@@ -1,0 +1,845 @@
+invoking
+bin/etcd --data-dir="d1"
+        --name="etcd-1"
+        --initial-cluster-state="new"
+        --listen-peer-urls="http://localhost:4001"
+        --initial-advertise-peer-urls="http://localhost:4001"
+        --listen-client-urls="http://localhost:5001"
+        --advertise-client-urls="http://localhost:5001"
+        --initial-cluster="etcd-1=http://localhost:4001"
+2015/06/01 20:04:53 etcd: listening for peers on http://localhost:4001
+2015/06/01 20:04:53 etcd: listening for client requests on http://localhost:5001
+2015/06/01 20:04:53 etcdserver: datadir is valid for the 2.0.1 format
+2015/06/01 20:04:53 etcdserver: name = etcd-1
+2015/06/01 20:04:53 etcdserver: data dir = d1
+2015/06/01 20:04:53 etcdserver: member dir = d1/member
+2015/06/01 20:04:53 etcdserver: heartbeat = 100ms
+2015/06/01 20:04:53 etcdserver: election = 1000ms
+2015/06/01 20:04:53 etcdserver: snapshot count = 10000
+2015/06/01 20:04:53 etcdserver: advertise client URLs = http://localhost:5001
+2015/06/01 20:04:53 etcdserver: initial advertise peer URLs = http://localhost:4001
+2015/06/01 20:04:53 etcdserver: initial cluster = etcd-1=http://localhost:4001
+2015/06/01 20:04:53 etcdserver: start member 5d814446642db07a in cluster 40ff005f5abc8125
+2015/06/01 20:04:53 raft: 5d814446642db07a became follower at term 0
+2015/06/01 20:04:53 raft: newRaft 5d814446642db07a [peers: [], term: 0, commit: 0, applied: 0, lastindex: 0, lastterm: 0]
+2015/06/01 20:04:53 raft: 5d814446642db07a became follower at term 1
+2015/06/01 20:04:53 etcdserver: added local member 5d814446642db07a [http://localhost:4001] to cluster 40ff005f5abc8125
+2015/06/01 20:04:54 raft: 5d814446642db07a is starting a new election at term 1
+2015/06/01 20:04:54 raft: 5d814446642db07a became candidate at term 2
+2015/06/01 20:04:54 raft: 5d814446642db07a received vote from 5d814446642db07a at term 2
+2015/06/01 20:04:54 raft: 5d814446642db07a became leader at term 2
+2015/06/01 20:04:54 raft.node: 5d814446642db07a elected leader 5d814446642db07a at term 2
+2015/06/01 20:04:54 etcdserver: published {Name:etcd-1 ClientURLs:[http://localhost:5001]} to cluster 40ff005f5abc8125
+waiting 3 seconds for it to come up
+configuring 2
+2015/06/01 20:04:56 etcdserver: added member a0b8c728970b1951 [http://localhost:4002] to cluster 40ff005f5abc8125
+Added member named etcd-2 with ID a0b8c728970b1951 to cluster
+
+ETCD_NAME="etcd-2"
+ETCD_INITIAL_CLUSTER="etcd-1=http://localhost:4001,etcd-2=http://localhost:4002"
+ETCD_INITIAL_CLUSTER_STATE="existing"
+2015/06/01 20:04:56 sender: error posting to a0b8c728970b1951: dial tcp 127.0.0.1:4002: connection refused
+2015/06/01 20:04:56 sender: the connection with a0b8c728970b1951 became inactive
+invoking
+bin/etcd --data-dir="d2"
+        --name="etcd-2"
+        --initial-cluster-state="existing"
+        --listen-peer-urls="http://localhost:4002"
+        --initial-advertise-peer-urls="http://localhost:4002"
+        --listen-client-urls="http://localhost:5002"
+        --advertise-client-urls="http://localhost:5002"
+        --initial-cluster="etcd-1=http://localhost:4001,etcd-2=http://localhost:4002"
+2015/06/01 20:04:56 etcd: listening for peers on http://localhost:4002
+2015/06/01 20:04:56 etcd: listening for client requests on http://localhost:5002
+2015/06/01 20:04:56 etcdserver: datadir is valid for the 2.0.1 format
+2015/06/01 20:04:56 etcdserver: name = etcd-2
+2015/06/01 20:04:56 etcdserver: data dir = d2
+2015/06/01 20:04:56 etcdserver: member dir = d2/member
+2015/06/01 20:04:56 etcdserver: heartbeat = 100ms
+2015/06/01 20:04:56 etcdserver: election = 1000ms
+2015/06/01 20:04:56 etcdserver: snapshot count = 10000
+2015/06/01 20:04:56 etcdserver: advertise client URLs = http://localhost:5002
+2015/06/01 20:04:56 etcdserver: start member a0b8c728970b1951 in cluster 40ff005f5abc8125
+2015/06/01 20:04:56 raft: a0b8c728970b1951 became follower at term 0
+2015/06/01 20:04:56 raft: newRaft a0b8c728970b1951 [peers: [], term: 0, commit: 0, applied: 0, lastindex: 0, lastterm: 0]
+2015/06/01 20:04:56 raft: a0b8c728970b1951 became follower at term 1
+2015/06/01 20:04:56 raft: a0b8c728970b1951 [term: 1] received a MsgHeartbeat message with higher term from 5d814446642db07a [term: 2]
+2015/06/01 20:04:56 raft: a0b8c728970b1951 became follower at term 2
+2015/06/01 20:04:56 raft.node: a0b8c728970b1951 elected leader 5d814446642db07a at term 2
+2015/06/01 20:04:56 sender: the connection with a0b8c728970b1951 became active
+2015/06/01 20:04:56 raft: a0b8c728970b1951 [logterm: 0, index: 8] rejected msgApp [logterm: 2, index: 8] from 5d814446642db07a
+2015/06/01 20:04:56 raft: 5d814446642db07a received msgApp rejection(lastindex: 0) from a0b8c728970b1951 for index 8
+2015/06/01 20:04:56 raft: 5d814446642db07a decreased progress of a0b8c728970b1951 to [next = 1, match = 0, wait = 0]
+2015/06/01 20:04:56 rafthttp: starting client stream to 5d814446642db07a at term 2
+2015/06/01 20:04:56 etcdserver: added member 5d814446642db07a [http://localhost:4001] to cluster 40ff005f5abc8125
+2015/06/01 20:04:56 etcdserver: added local member a0b8c728970b1951 [http://localhost:4002] to cluster 40ff005f5abc8125
+2015/06/01 20:04:57 etcdserver: published {Name:etcd-2 ClientURLs:[http://localhost:5002]} to cluster 40ff005f5abc8125
+configuring 3
+2015/06/01 20:05:00 etcdserver: added member 44a37f7441568b8b [http://localhost:4003] to cluster 40ff005f5abc8125
+Added member named etcd-3 with ID 44a37f7441568b8b to cluster
+
+ETCD_NAME="etcd-3"
+ETCD_INITIAL_CLUSTER="etcd-3=http://localhost:4003,etcd-1=http://localhost:4001,etcd-2=http://localhost:4002"
+ETCD_INITIAL_CLUSTER_STATE="existing"
+invoking
+bin/etcd --data-dir="d3"
+        --name="etcd-3"
+        --initial-cluster-state="existing"
+        --listen-peer-urls="http://localhost:4003"
+        --initial-advertise-peer-urls="http://localhost:4003"
+        --listen-client-urls="http://localhost:5003"
+        --advertise-client-urls="http://localhost:5003"
+        --initial-cluster="etcd-1=http://localhost:4001,etcd-2=http://localhost:4002,etcd-3=http://localhost:4003"
+2015/06/01 20:05:00 etcd: listening for peers on http://localhost:4003
+2015/06/01 20:05:00 etcd: listening for client requests on http://localhost:5003
+2015/06/01 20:05:00 etcdserver: datadir is valid for the 2.0.1 format
+2015/06/01 20:05:00 etcdserver: name = etcd-3
+2015/06/01 20:05:00 etcdserver: data dir = d3
+2015/06/01 20:05:00 etcdserver: member dir = d3/member
+2015/06/01 20:05:00 etcdserver: heartbeat = 100ms
+2015/06/01 20:05:00 etcdserver: election = 1000ms
+2015/06/01 20:05:00 etcdserver: snapshot count = 10000
+2015/06/01 20:05:00 etcdserver: advertise client URLs = http://localhost:5003
+2015/06/01 20:05:00 etcdserver: start member 44a37f7441568b8b in cluster 40ff005f5abc8125
+2015/06/01 20:05:00 raft: 44a37f7441568b8b became follower at term 0
+2015/06/01 20:05:00 raft: newRaft 44a37f7441568b8b [peers: [], term: 0, commit: 0, applied: 0, lastindex: 0, lastterm: 0]
+2015/06/01 20:05:00 raft: 44a37f7441568b8b became follower at term 1
+2015/06/01 20:05:00 raft: 44a37f7441568b8b [term: 1] received a MsgHeartbeat message with higher term from 5d814446642db07a [term: 2]
+2015/06/01 20:05:00 raft: 44a37f7441568b8b became follower at term 2
+2015/06/01 20:05:00 raft.node: 44a37f7441568b8b elected leader 5d814446642db07a at term 2
+2015/06/01 20:05:00 etcdserver: added member 44a37f7441568b8b [http://localhost:4003] to cluster 40ff005f5abc8125
+2015/06/01 20:05:00 raft: 44a37f7441568b8b [logterm: 0, index: 18] rejected msgApp [logterm: 2, index: 18] from 5d814446642db07a
+2015/06/01 20:05:00 raft: 5d814446642db07a received msgApp rejection(lastindex: 0) from 44a37f7441568b8b for index 18
+2015/06/01 20:05:00 raft: 5d814446642db07a decreased progress of 44a37f7441568b8b to [next = 1, match = 0, wait = 0]
+2015/06/01 20:05:00 rafthttp: starting client stream to 5d814446642db07a at term 2
+2015/06/01 20:05:00 etcdserver: added member 5d814446642db07a [http://localhost:4001] to cluster 40ff005f5abc8125
+2015/06/01 20:05:00 etcdserver: added member a0b8c728970b1951 [http://localhost:4002] to cluster 40ff005f5abc8125
+2015/06/01 20:05:00 etcdserver: added local member 44a37f7441568b8b [http://localhost:4003] to cluster 40ff005f5abc8125
+2015/06/01 20:05:00 etcdserver: published {Name:etcd-3 ClientURLs:[http://localhost:5003]} to cluster 40ff005f5abc8125
+trying to start 4
+configuring 4
+2015/06/01 20:05:03 etcdserver: added member 136b13cbfb2c4e73 [http://localhost:4004] to cluster 40ff005f5abc8125
+2015/06/01 20:05:03 sender: error posting to 136b13cbfb2c4e73: dial tcp 127.0.0.1:4004: connection refused
+2015/06/01 20:05:03 sender: the connection with 136b13cbfb2c4e73 became inactive
+2015/06/01 20:05:03 etcdserver: added member 136b13cbfb2c4e73 [http://localhost:4004] to cluster 40ff005f5abc8125
+2015/06/01 20:05:03 etcdserver: added member 136b13cbfb2c4e73 [http://localhost:4004] to cluster 40ff005f5abc8125
+Added member named etcd-4 with ID 136b13cbfb2c4e73 to cluster
+
+ETCD_NAME="etcd-4"
+ETCD_INITIAL_CLUSTER="etcd-4=http://localhost:4004,etcd-3=http://localhost:4003,etcd-1=http://localhost:4001,etcd-2=http://localhost:4002"
+ETCD_INITIAL_CLUSTER_STATE="existing"
+invoking
+bin/etcd --data-dir="d4"
+        --name="etcd-4"
+        --initial-cluster-state="existing"
+        --listen-peer-urls="http://localhost:4004"
+        --initial-advertise-peer-urls="http://localhost:4004"
+        --listen-client-urls="http://localhost:5004"
+        --advertise-client-urls="http://localhost:5004"
+        --initial-cluster="etcd-1=http://localhost:4001,etcd-2=http://localhost:4002,etcd-3=http://localhost:4003,etcd-4=http://localhost:4004"
+2015/06/01 20:05:03 etcd: listening for peers on http://localhost:4004
+2015/06/01 20:05:03 etcd: listening for client requests on http://localhost:5004
+2015/06/01 20:05:03 etcdserver: datadir is valid for the 2.0.1 format
+2015/06/01 20:05:03 etcdserver: name = etcd-4
+2015/06/01 20:05:03 etcdserver: data dir = d4
+2015/06/01 20:05:03 etcdserver: member dir = d4/member
+2015/06/01 20:05:03 etcdserver: heartbeat = 100ms
+2015/06/01 20:05:03 etcdserver: election = 1000ms
+2015/06/01 20:05:03 etcdserver: snapshot count = 10000
+2015/06/01 20:05:03 etcdserver: advertise client URLs = http://localhost:5004
+2015/06/01 20:05:03 etcdserver: start member 136b13cbfb2c4e73 in cluster 40ff005f5abc8125
+2015/06/01 20:05:03 raft: 136b13cbfb2c4e73 became follower at term 0
+2015/06/01 20:05:03 raft: newRaft 136b13cbfb2c4e73 [peers: [], term: 0, commit: 0, applied: 0, lastindex: 0, lastterm: 0]
+2015/06/01 20:05:03 raft: 136b13cbfb2c4e73 became follower at term 1
+2015/06/01 20:05:03 raft: 136b13cbfb2c4e73 [term: 1] received a MsgHeartbeat message with higher term from 5d814446642db07a [term: 2]
+2015/06/01 20:05:03 raft: 136b13cbfb2c4e73 became follower at term 2
+2015/06/01 20:05:03 raft.node: 136b13cbfb2c4e73 elected leader 5d814446642db07a at term 2
+2015/06/01 20:05:03 sender: the connection with 136b13cbfb2c4e73 became active
+2015/06/01 20:05:03 raft: 136b13cbfb2c4e73 [logterm: 0, index: 26] rejected msgApp [logterm: 2, index: 26] from 5d814446642db07a
+2015/06/01 20:05:03 raft: 5d814446642db07a received msgApp rejection(lastindex: 0) from 136b13cbfb2c4e73 for index 26
+2015/06/01 20:05:03 raft: 5d814446642db07a decreased progress of 136b13cbfb2c4e73 to [next = 1, match = 0, wait = 0]
+2015/06/01 20:05:03 rafthttp: starting client stream to 5d814446642db07a at term 2
+2015/06/01 20:05:03 etcdserver: added member 5d814446642db07a [http://localhost:4001] to cluster 40ff005f5abc8125
+2015/06/01 20:05:03 etcdserver: added member a0b8c728970b1951 [http://localhost:4002] to cluster 40ff005f5abc8125
+2015/06/01 20:05:03 etcdserver: added member 44a37f7441568b8b [http://localhost:4003] to cluster 40ff005f5abc8125
+2015/06/01 20:05:03 etcdserver: added local member 136b13cbfb2c4e73 [http://localhost:4004] to cluster 40ff005f5abc8125
+2015/06/01 20:05:03 etcdserver: published {Name:etcd-4 ClientURLs:[http://localhost:5004]} to cluster 40ff005f5abc8125
+trying to start 3
+configuring 3
+etcdserver: peerURL exists
+
+invoking
+bin/etcd --data-dir="d3"
+        --name="etcd-3"
+        --initial-cluster-state="existing"
+        --listen-peer-urls="http://localhost:4003"
+        --initial-advertise-peer-urls="http://localhost:4003"
+        --listen-client-urls="http://localhost:5003"
+        --advertise-client-urls="http://localhost:5003"
+        --initial-cluster="etcd-1=http://localhost:4001,etcd-2=http://localhost:4002,etcd-3=http://localhost:4003,etcd-4=http://localhost:4004"
+2015/06/01 20:05:06 etcd: listen tcp 127.0.0.1:4003: bind: address already in use
+trying to kill 2
+2015/06/01 20:05:09 received terminated signal, shutting down...
+2015/06/01 20:05:09 rafthttp: encountered error reading the client log stream: read tcp 127.0.0.1:4001: use of closed network connection
+2015/06/01 20:05:09 rafthttp: client streaming to 5d814446642db07a at term 2 has been stopped
+2015/06/01 20:05:09 sender: error posting to a0b8c728970b1951: dial tcp 127.0.0.1:4002: connection refused
+2015/06/01 20:05:09 sender: the connection with a0b8c728970b1951 became inactive
+2015/06/01 20:05:11 rafthttp: encountered error writing to server log stream: write tcp 127.0.0.1:58634: broken pipe
+2015/06/01 20:05:11 rafthttp: server streaming to a0b8c728970b1951 at term 2 has been stopped
+2015/06/01 20:05:11 stream: error sending message: stopped
+2015/06/01 20:05:11 stream: stopping the stream server...
+trying to kill 1
+2015/06/01 20:05:12 received terminated signal, shutting down...
+2015/06/01 20:05:12 rafthttp: server streaming to 44a37f7441568b8b at term 2 has been stopped
+2015/06/01 20:05:12 rafthttp: server streaming to 136b13cbfb2c4e73 at term 2 has been stopped
+2015/06/01 20:05:12 rafthttp: client streaming to 5d814446642db07a at term 2 has been stopped
+2015/06/01 20:05:12 rafthttp: client streaming to 5d814446642db07a at term 2 has been stopped
+2015/06/01 20:05:13 raft: 136b13cbfb2c4e73 is starting a new election at term 2
+2015/06/01 20:05:13 raft: 136b13cbfb2c4e73 became candidate at term 3
+2015/06/01 20:05:13 raft: 136b13cbfb2c4e73 received vote from 136b13cbfb2c4e73 at term 3
+2015/06/01 20:05:13 raft: 136b13cbfb2c4e73 [logterm: 2, index: 46] sent vote request to 5d814446642db07a at term 3
+2015/06/01 20:05:13 raft: 136b13cbfb2c4e73 [logterm: 2, index: 46] sent vote request to a0b8c728970b1951 at term 3
+2015/06/01 20:05:13 raft: 136b13cbfb2c4e73 [logterm: 2, index: 46] sent vote request to 44a37f7441568b8b at term 3
+2015/06/01 20:05:13 raft.node: 136b13cbfb2c4e73 lost leader 5d814446642db07a at term 3
+2015/06/01 20:05:13 sender: error posting to a0b8c728970b1951: dial tcp 127.0.0.1:4002: connection refused
+2015/06/01 20:05:13 sender: the connection with a0b8c728970b1951 became inactive
+2015/06/01 20:05:13 sender: error posting to 5d814446642db07a: dial tcp 127.0.0.1:4001: connection refused
+2015/06/01 20:05:13 sender: the connection with 5d814446642db07a became inactive
+2015/06/01 20:05:13 raft: 44a37f7441568b8b [term: 2] received a MsgVote message with higher term from 136b13cbfb2c4e73 [term: 3]
+2015/06/01 20:05:13 raft: 44a37f7441568b8b became follower at term 3
+2015/06/01 20:05:13 raft: 44a37f7441568b8b [logterm: 2, index: 46, vote: 0] voted for 136b13cbfb2c4e73 [logterm: 2, index: 46] at term 3
+2015/06/01 20:05:13 raft.node: 44a37f7441568b8b lost leader 5d814446642db07a at term 3
+2015/06/01 20:05:13 raft: 136b13cbfb2c4e73 received vote from 44a37f7441568b8b at term 3
+2015/06/01 20:05:13 raft: 136b13cbfb2c4e73 [q:3] has received 2 votes and 0 vote rejections
+2015/06/01 20:05:14 raft: 136b13cbfb2c4e73 is starting a new election at term 3
+2015/06/01 20:05:14 raft: 136b13cbfb2c4e73 became candidate at term 4
+2015/06/01 20:05:14 raft: 136b13cbfb2c4e73 received vote from 136b13cbfb2c4e73 at term 4
+2015/06/01 20:05:14 raft: 136b13cbfb2c4e73 [logterm: 2, index: 46] sent vote request to 5d814446642db07a at term 4
+2015/06/01 20:05:14 raft: 136b13cbfb2c4e73 [logterm: 2, index: 46] sent vote request to a0b8c728970b1951 at term 4
+2015/06/01 20:05:14 raft: 136b13cbfb2c4e73 [logterm: 2, index: 46] sent vote request to 44a37f7441568b8b at term 4
+2015/06/01 20:05:14 raft: 44a37f7441568b8b [term: 3] received a MsgVote message with higher term from 136b13cbfb2c4e73 [term: 4]
+2015/06/01 20:05:14 raft: 44a37f7441568b8b became follower at term 4
+2015/06/01 20:05:14 raft: 44a37f7441568b8b [logterm: 2, index: 46, vote: 0] voted for 136b13cbfb2c4e73 [logterm: 2, index: 46] at term 4
+2015/06/01 20:05:14 raft: 136b13cbfb2c4e73 received vote from 44a37f7441568b8b at term 4
+2015/06/01 20:05:14 raft: 136b13cbfb2c4e73 [q:3] has received 2 votes and 0 vote rejections
+trying to kill 3
+2015/06/01 20:05:15 received terminated signal, shutting down...
+2015/06/01 20:05:15 raft: 136b13cbfb2c4e73 is starting a new election at term 4
+2015/06/01 20:05:15 raft: 136b13cbfb2c4e73 became candidate at term 5
+2015/06/01 20:05:15 raft: 136b13cbfb2c4e73 received vote from 136b13cbfb2c4e73 at term 5
+2015/06/01 20:05:15 raft: 136b13cbfb2c4e73 [logterm: 2, index: 46] sent vote request to 5d814446642db07a at term 5
+2015/06/01 20:05:15 raft: 136b13cbfb2c4e73 [logterm: 2, index: 46] sent vote request to a0b8c728970b1951 at term 5
+2015/06/01 20:05:15 raft: 136b13cbfb2c4e73 [logterm: 2, index: 46] sent vote request to 44a37f7441568b8b at term 5
+2015/06/01 20:05:15 sender: error posting to 44a37f7441568b8b: dial tcp 127.0.0.1:4003: connection refused
+2015/06/01 20:05:15 sender: the connection with 44a37f7441568b8b became inactive
+2015/06/01 20:05:17 raft: 136b13cbfb2c4e73 is starting a new election at term 5
+2015/06/01 20:05:17 raft: 136b13cbfb2c4e73 became candidate at term 6
+2015/06/01 20:05:17 raft: 136b13cbfb2c4e73 received vote from 136b13cbfb2c4e73 at term 6
+2015/06/01 20:05:17 raft: 136b13cbfb2c4e73 [logterm: 2, index: 46] sent vote request to a0b8c728970b1951 at term 6
+2015/06/01 20:05:17 raft: 136b13cbfb2c4e73 [logterm: 2, index: 46] sent vote request to 44a37f7441568b8b at term 6
+2015/06/01 20:05:17 raft: 136b13cbfb2c4e73 [logterm: 2, index: 46] sent vote request to 5d814446642db07a at term 6
+2015/06/01 20:05:18 raft: 136b13cbfb2c4e73 is starting a new election at term 6
+2015/06/01 20:05:18 raft: 136b13cbfb2c4e73 became candidate at term 7
+2015/06/01 20:05:18 raft: 136b13cbfb2c4e73 received vote from 136b13cbfb2c4e73 at term 7
+2015/06/01 20:05:18 raft: 136b13cbfb2c4e73 [logterm: 2, index: 46] sent vote request to 5d814446642db07a at term 7
+2015/06/01 20:05:18 raft: 136b13cbfb2c4e73 [logterm: 2, index: 46] sent vote request to a0b8c728970b1951 at term 7
+2015/06/01 20:05:18 raft: 136b13cbfb2c4e73 [logterm: 2, index: 46] sent vote request to 44a37f7441568b8b at term 7
+trying to start 2
+configuring 2
+2015/06/01 20:05:19 raft: 136b13cbfb2c4e73 is starting a new election at term 7
+2015/06/01 20:05:19 raft: 136b13cbfb2c4e73 became candidate at term 8
+2015/06/01 20:05:19 raft: 136b13cbfb2c4e73 received vote from 136b13cbfb2c4e73 at term 8
+2015/06/01 20:05:19 raft: 136b13cbfb2c4e73 [logterm: 2, index: 46] sent vote request to 5d814446642db07a at term 8
+2015/06/01 20:05:19 raft: 136b13cbfb2c4e73 [logterm: 2, index: 46] sent vote request to a0b8c728970b1951 at term 8
+2015/06/01 20:05:19 raft: 136b13cbfb2c4e73 [logterm: 2, index: 46] sent vote request to 44a37f7441568b8b at term 8
+2015/06/01 20:05:21 raft: 136b13cbfb2c4e73 is starting a new election at term 8
+2015/06/01 20:05:21 raft: 136b13cbfb2c4e73 became candidate at term 9
+2015/06/01 20:05:21 raft: 136b13cbfb2c4e73 received vote from 136b13cbfb2c4e73 at term 9
+2015/06/01 20:05:21 raft: 136b13cbfb2c4e73 [logterm: 2, index: 46] sent vote request to 5d814446642db07a at term 9
+2015/06/01 20:05:21 raft: 136b13cbfb2c4e73 [logterm: 2, index: 46] sent vote request to a0b8c728970b1951 at term 9
+2015/06/01 20:05:21 raft: 136b13cbfb2c4e73 [logterm: 2, index: 46] sent vote request to 44a37f7441568b8b at term 9
+2015/06/01 20:05:22 raft: 136b13cbfb2c4e73 is starting a new election at term 9
+2015/06/01 20:05:22 raft: 136b13cbfb2c4e73 became candidate at term 10
+2015/06/01 20:05:22 raft: 136b13cbfb2c4e73 received vote from 136b13cbfb2c4e73 at term 10
+2015/06/01 20:05:22 raft: 136b13cbfb2c4e73 [logterm: 2, index: 46] sent vote request to 5d814446642db07a at term 10
+2015/06/01 20:05:22 raft: 136b13cbfb2c4e73 [logterm: 2, index: 46] sent vote request to a0b8c728970b1951 at term 10
+2015/06/01 20:05:22 raft: 136b13cbfb2c4e73 [logterm: 2, index: 46] sent vote request to 44a37f7441568b8b at term 10
+context deadline exceeded
+
+invoking
+bin/etcd --data-dir="d2"
+        --name="etcd-2"
+        --initial-cluster-state="existing"
+        --listen-peer-urls="http://localhost:4002"
+        --initial-advertise-peer-urls="http://localhost:4002"
+        --listen-client-urls="http://localhost:5002"
+        --advertise-client-urls="http://localhost:5002"
+        --initial-cluster="etcd-2=http://localhost:4002,etcd-3=http://localhost:4003,etcd-4=http://localhost:4004"
+2015/06/01 20:05:23 etcd: listening for peers on http://localhost:4002
+2015/06/01 20:05:23 etcd: listening for client requests on http://localhost:5002
+2015/06/01 20:05:23 etcdserver: datadir is valid for the 2.0.1 format
+2015/06/01 20:05:23 etcdserver: could not get cluster response from http://localhost:4003: Get http://localhost:4003/members: dial tcp 127.0.0.1:4003: connection refused
+2015/06/01 20:05:23 etcd: stopping listening for client requests on http://localhost:5002
+2015/06/01 20:05:23 etcd: stopping listening for peers on http://localhost:4002
+2015/06/01 20:05:23 etcd: error validating peerURLs etcd-1=http://localhost:4001,etcd-2=http://localhost:4002,etcd-3=http://localhost:4003,etcd-4=http://localhost:4004: member count is unequal
+2015/06/01 20:05:24 raft: 136b13cbfb2c4e73 is starting a new election at term 10
+2015/06/01 20:05:24 raft: 136b13cbfb2c4e73 became candidate at term 11
+2015/06/01 20:05:24 raft: 136b13cbfb2c4e73 received vote from 136b13cbfb2c4e73 at term 11
+2015/06/01 20:05:24 raft: 136b13cbfb2c4e73 [logterm: 2, index: 46] sent vote request to a0b8c728970b1951 at term 11
+2015/06/01 20:05:24 raft: 136b13cbfb2c4e73 [logterm: 2, index: 46] sent vote request to 44a37f7441568b8b at term 11
+2015/06/01 20:05:24 raft: 136b13cbfb2c4e73 [logterm: 2, index: 46] sent vote request to 5d814446642db07a at term 11
+2015/06/01 20:05:24 etcdhttp: error adding node bf848294d6cf63e9: context deadline exceeded
+2015/06/01 20:05:24 etcdhttp: unexpected error: context deadline exceeded
+2015/06/01 20:05:25 raft: 136b13cbfb2c4e73 is starting a new election at term 11
+2015/06/01 20:05:25 raft: 136b13cbfb2c4e73 became candidate at term 12
+2015/06/01 20:05:25 raft: 136b13cbfb2c4e73 received vote from 136b13cbfb2c4e73 at term 12
+2015/06/01 20:05:25 raft: 136b13cbfb2c4e73 [logterm: 2, index: 46] sent vote request to 5d814446642db07a at term 12
+2015/06/01 20:05:25 raft: 136b13cbfb2c4e73 [logterm: 2, index: 46] sent vote request to a0b8c728970b1951 at term 12
+2015/06/01 20:05:25 raft: 136b13cbfb2c4e73 [logterm: 2, index: 46] sent vote request to 44a37f7441568b8b at term 12
+2015/06/01 20:05:26 raft: 136b13cbfb2c4e73 is starting a new election at term 12
+2015/06/01 20:05:26 raft: 136b13cbfb2c4e73 became candidate at term 13
+2015/06/01 20:05:26 raft: 136b13cbfb2c4e73 received vote from 136b13cbfb2c4e73 at term 13
+2015/06/01 20:05:26 raft: 136b13cbfb2c4e73 [logterm: 2, index: 46] sent vote request to 44a37f7441568b8b at term 13
+2015/06/01 20:05:26 raft: 136b13cbfb2c4e73 [logterm: 2, index: 46] sent vote request to 5d814446642db07a at term 13
+2015/06/01 20:05:26 raft: 136b13cbfb2c4e73 [logterm: 2, index: 46] sent vote request to a0b8c728970b1951 at term 13
+trying to start 1
+configuring 1
+dial tcp 127.0.0.1:5002: connection refused
+
+invoking
+bin/etcd --data-dir="d1"
+        --name="etcd-1"
+        --initial-cluster-state="existing"
+        --listen-peer-urls="http://localhost:4001"
+        --initial-advertise-peer-urls="http://localhost:4001"
+        --listen-client-urls="http://localhost:5001"
+        --advertise-client-urls="http://localhost:5001"
+        --initial-cluster="etcd-1=http://localhost:4001,etcd-2=http://localhost:4002,etcd-3=http://localhost:4003,etcd-4=http://localhost:4004"
+2015/06/01 20:05:26 etcd: listening for peers on http://localhost:4001
+2015/06/01 20:05:26 etcd: listening for client requests on http://localhost:5001
+2015/06/01 20:05:26 etcdserver: datadir is valid for the 2.0.1 format
+2015/06/01 20:05:26 etcdserver: could not get cluster response from http://localhost:4002: Get http://localhost:4002/members: dial tcp 127.0.0.1:4002: connection refused
+2015/06/01 20:05:26 etcdserver: could not get cluster response from http://localhost:4003: Get http://localhost:4003/members: dial tcp 127.0.0.1:4003: connection refused
+2015/06/01 20:05:26 etcdserver: name = etcd-1
+2015/06/01 20:05:26 etcdserver: data dir = d1
+2015/06/01 20:05:26 etcdserver: member dir = d1/member
+2015/06/01 20:05:26 etcdserver: heartbeat = 100ms
+2015/06/01 20:05:26 etcdserver: election = 1000ms
+2015/06/01 20:05:26 etcdserver: snapshot count = 10000
+2015/06/01 20:05:26 etcdserver: advertise client URLs = http://localhost:5001
+2015/06/01 20:05:26 etcdserver: start member 5d814446642db07a in cluster 40ff005f5abc8125
+2015/06/01 20:05:26 raft: 5d814446642db07a became follower at term 0
+2015/06/01 20:05:26 raft: newRaft 5d814446642db07a [peers: [], term: 0, commit: 0, applied: 0, lastindex: 0, lastterm: 0]
+2015/06/01 20:05:26 raft: 5d814446642db07a became follower at term 1
+2015/06/01 20:05:28 raft: 136b13cbfb2c4e73 is starting a new election at term 13
+2015/06/01 20:05:28 raft: 136b13cbfb2c4e73 became candidate at term 14
+2015/06/01 20:05:28 raft: 136b13cbfb2c4e73 received vote from 136b13cbfb2c4e73 at term 14
+2015/06/01 20:05:28 raft: 136b13cbfb2c4e73 [logterm: 2, index: 46] sent vote request to 5d814446642db07a at term 14
+2015/06/01 20:05:28 raft: 136b13cbfb2c4e73 [logterm: 2, index: 46] sent vote request to a0b8c728970b1951 at term 14
+2015/06/01 20:05:28 raft: 136b13cbfb2c4e73 [logterm: 2, index: 46] sent vote request to 44a37f7441568b8b at term 14
+2015/06/01 20:05:28 raft: 5d814446642db07a [term: 1] received a MsgVote message with higher term from 136b13cbfb2c4e73 [term: 14]
+2015/06/01 20:05:28 raft: 5d814446642db07a became follower at term 14
+2015/06/01 20:05:28 sender: the connection with 5d814446642db07a became active
+2015/06/01 20:05:28 raft: 5d814446642db07a [logterm: 0, index: 0, vote: 0] voted for 136b13cbfb2c4e73 [logterm: 2, index: 46] at term 14
+2015/06/01 20:05:28 raft: 136b13cbfb2c4e73 received vote from 5d814446642db07a at term 14
+2015/06/01 20:05:28 raft: 136b13cbfb2c4e73 [q:3] has received 2 votes and 0 vote rejections
+2015/06/01 20:05:29 raft: 136b13cbfb2c4e73 is starting a new election at term 14
+2015/06/01 20:05:29 raft: 136b13cbfb2c4e73 became candidate at term 15
+2015/06/01 20:05:29 raft: 136b13cbfb2c4e73 received vote from 136b13cbfb2c4e73 at term 15
+2015/06/01 20:05:29 raft: 136b13cbfb2c4e73 [logterm: 2, index: 46] sent vote request to 44a37f7441568b8b at term 15
+2015/06/01 20:05:29 raft: 136b13cbfb2c4e73 [logterm: 2, index: 46] sent vote request to 5d814446642db07a at term 15
+2015/06/01 20:05:29 raft: 136b13cbfb2c4e73 [logterm: 2, index: 46] sent vote request to a0b8c728970b1951 at term 15
+2015/06/01 20:05:29 raft: 5d814446642db07a [term: 14] received a MsgVote message with higher term from 136b13cbfb2c4e73 [term: 15]
+2015/06/01 20:05:29 raft: 5d814446642db07a became follower at term 15
+2015/06/01 20:05:29 raft: 5d814446642db07a [logterm: 0, index: 0, vote: 0] voted for 136b13cbfb2c4e73 [logterm: 2, index: 46] at term 15
+2015/06/01 20:05:29 raft: 136b13cbfb2c4e73 received vote from 5d814446642db07a at term 15
+2015/06/01 20:05:29 raft: 136b13cbfb2c4e73 [q:3] has received 2 votes and 0 vote rejections
+trying to kill 1
+2015/06/01 20:05:30 raft: 136b13cbfb2c4e73 is starting a new election at term 15
+2015/06/01 20:05:30 raft: 136b13cbfb2c4e73 became candidate at term 16
+2015/06/01 20:05:30 raft: 136b13cbfb2c4e73 received vote from 136b13cbfb2c4e73 at term 16
+2015/06/01 20:05:30 raft: 136b13cbfb2c4e73 [logterm: 2, index: 46] sent vote request to 44a37f7441568b8b at term 16
+2015/06/01 20:05:30 raft: 136b13cbfb2c4e73 [logterm: 2, index: 46] sent vote request to 5d814446642db07a at term 16
+2015/06/01 20:05:30 raft: 136b13cbfb2c4e73 [logterm: 2, index: 46] sent vote request to a0b8c728970b1951 at term 16
+2015/06/01 20:05:30 raft: 5d814446642db07a [term: 15] received a MsgVote message with higher term from 136b13cbfb2c4e73 [term: 16]
+2015/06/01 20:05:30 raft: 5d814446642db07a became follower at term 16
+2015/06/01 20:05:30 raft: 5d814446642db07a [logterm: 0, index: 0, vote: 0] voted for 136b13cbfb2c4e73 [logterm: 2, index: 46] at term 16
+2015/06/01 20:05:30 raft: 136b13cbfb2c4e73 received vote from 5d814446642db07a at term 16
+2015/06/01 20:05:30 raft: 136b13cbfb2c4e73 [q:3] has received 2 votes and 0 vote rejections
+
+
+2015/06/01 20:05:31 etcdserver: publish error: etcdserver: request timed out
+2015/06/01 20:05:32 raft: 136b13cbfb2c4e73 is starting a new election at term 16
+2015/06/01 20:05:32 raft: 136b13cbfb2c4e73 became candidate at term 17
+2015/06/01 20:05:32 raft: 136b13cbfb2c4e73 received vote from 136b13cbfb2c4e73 at term 17
+2015/06/01 20:05:32 raft: 136b13cbfb2c4e73 [logterm: 2, index: 46] sent vote request to a0b8c728970b1951 at term 17
+2015/06/01 20:05:32 raft: 136b13cbfb2c4e73 [logterm: 2, index: 46] sent vote request to 44a37f7441568b8b at term 17
+2015/06/01 20:05:32 raft: 136b13cbfb2c4e73 [logterm: 2, index: 46] sent vote request to 5d814446642db07a at term 17
+2015/06/01 20:05:32 raft: 5d814446642db07a [term: 16] received a MsgVote message with higher term from 136b13cbfb2c4e73 [term: 17]
+2015/06/01 20:05:32 raft: 5d814446642db07a became follower at term 17
+2015/06/01 20:05:32 raft: 5d814446642db07a [logterm: 0, index: 0, vote: 0] voted for 136b13cbfb2c4e73 [logterm: 2, index: 46] at term 17
+2015/06/01 20:05:32 raft: 136b13cbfb2c4e73 received vote from 5d814446642db07a at term 17
+2015/06/01 20:05:32 raft: 136b13cbfb2c4e73 [q:3] has received 2 votes and 0 vote rejections
+trying to start 3
+configuring 3
+dial tcp 127.0.0.1:5002: connection refused
+
+invoking
+bin/etcd --data-dir="d3"
+        --name="etcd-3"
+        --initial-cluster-state="existing"
+        --listen-peer-urls="http://localhost:4003"
+        --initial-advertise-peer-urls="http://localhost:4003"
+        --listen-client-urls="http://localhost:5003"
+        --advertise-client-urls="http://localhost:5003"
+        --initial-cluster="etcd-1=http://localhost:4001,etcd-2=http://localhost:4002,etcd-3=http://localhost:4003,etcd-4=http://localhost:4004"
+2015/06/01 20:05:32 etcd: listening for peers on http://localhost:4003
+2015/06/01 20:05:32 etcd: listening for client requests on http://localhost:5003
+2015/06/01 20:05:32 etcdserver: datadir is valid for the 2.0.1 format
+2015/06/01 20:05:32 etcdserver: name = etcd-3
+2015/06/01 20:05:32 etcdserver: data dir = d3
+2015/06/01 20:05:32 etcdserver: member dir = d3/member
+2015/06/01 20:05:32 etcdserver: heartbeat = 100ms
+2015/06/01 20:05:32 etcdserver: election = 1000ms
+2015/06/01 20:05:32 etcdserver: snapshot count = 10000
+2015/06/01 20:05:32 etcdserver: advertise client URLs = http://localhost:5003
+2015/06/01 20:05:32 etcdserver: start member 44a37f7441568b8b in cluster 40ff005f5abc8125
+2015/06/01 20:05:32 raft: 44a37f7441568b8b became follower at term 0
+2015/06/01 20:05:32 raft: newRaft 44a37f7441568b8b [peers: [], term: 0, commit: 0, applied: 0, lastindex: 0, lastterm: 0]
+2015/06/01 20:05:32 raft: 44a37f7441568b8b became follower at term 1
+2015/06/01 20:05:33 raft: 136b13cbfb2c4e73 is starting a new election at term 17
+2015/06/01 20:05:33 raft: 136b13cbfb2c4e73 became candidate at term 18
+2015/06/01 20:05:33 raft: 136b13cbfb2c4e73 received vote from 136b13cbfb2c4e73 at term 18
+2015/06/01 20:05:33 raft: 136b13cbfb2c4e73 [logterm: 2, index: 46] sent vote request to 5d814446642db07a at term 18
+2015/06/01 20:05:33 raft: 136b13cbfb2c4e73 [logterm: 2, index: 46] sent vote request to a0b8c728970b1951 at term 18
+2015/06/01 20:05:33 raft: 136b13cbfb2c4e73 [logterm: 2, index: 46] sent vote request to 44a37f7441568b8b at term 18
+2015/06/01 20:05:33 raft: 5d814446642db07a [term: 17] received a MsgVote message with higher term from 136b13cbfb2c4e73 [term: 18]
+2015/06/01 20:05:33 raft: 5d814446642db07a became follower at term 18
+2015/06/01 20:05:33 raft: 5d814446642db07a [logterm: 0, index: 0, vote: 0] voted for 136b13cbfb2c4e73 [logterm: 2, index: 46] at term 18
+2015/06/01 20:05:33 raft: 44a37f7441568b8b [term: 1] received a MsgVote message with higher term from 136b13cbfb2c4e73 [term: 18]
+2015/06/01 20:05:33 raft: 44a37f7441568b8b became follower at term 18
+2015/06/01 20:05:33 raft: 44a37f7441568b8b [logterm: 0, index: 0, vote: 0] voted for 136b13cbfb2c4e73 [logterm: 2, index: 46] at term 18
+2015/06/01 20:05:33 sender: the connection with 44a37f7441568b8b became active
+2015/06/01 20:05:33 raft: 136b13cbfb2c4e73 received vote from 5d814446642db07a at term 18
+2015/06/01 20:05:33 raft: 136b13cbfb2c4e73 [q:3] has received 2 votes and 0 vote rejections
+2015/06/01 20:05:33 raft: 136b13cbfb2c4e73 received vote from 44a37f7441568b8b at term 18
+2015/06/01 20:05:33 raft: 136b13cbfb2c4e73 [q:3] has received 3 votes and 0 vote rejections
+2015/06/01 20:05:33 raft: 136b13cbfb2c4e73 became leader at term 18
+2015/06/01 20:05:33 raft.node: 136b13cbfb2c4e73 elected leader 136b13cbfb2c4e73 at term 18
+2015/06/01 20:05:33 raft: 5d814446642db07a [logterm: 0, index: 46] rejected msgApp [logterm: 2, index: 46] from 136b13cbfb2c4e73
+2015/06/01 20:05:33 raft.node: 5d814446642db07a elected leader 136b13cbfb2c4e73 at term 18
+2015/06/01 20:05:33 raft: 44a37f7441568b8b [logterm: 0, index: 46] rejected msgApp [logterm: 2, index: 46] from 136b13cbfb2c4e73
+2015/06/01 20:2015/06/01 20:05:305:33 raft.node: 44a37f7441568b8b elected leader 136b13cbfb2c4e73 at term 18
+3 raft: 136b13cbfb2c4e73 received msgApp rejection(lastindex: 0) from 5d814446642db07a for index 46
+2015/06/01 20:05:33 raft: 136b13cbfb2c4e73 decreased progress of 5d814446642db07a to [next = 1, match = 0, wait = 0]
+2015/06/01 20:05:33 raft: 136b13cbfb2c4e73 received msgApp rejection(lastindex: 0) from 44a37f7441568b8b for index 46
+2015/06/01 20:05:33 raft: 136b13cbfb2c4e73 decreased progress of 44a37f7441568b8b to [next = 1, match = 0, wait = 0]
+2015/06/01 20:05:33 rafthttp: starting client stream to 136b13cbfb2c4e73 at term 18
+2015/06/01 20:05:33 etcdserver: added local member 5d814446642db07a [http://localhost:4001] to cluster 40ff005f5abc8125
+2015/06/01 20:05:33 etcdserver: added member a0b8c728970b1951 [http://localhost:4002] to cluster 40ff005f5abc8125
+2015/06/01 20:05:33 etcdserver: added member 44a37f7441568b8b [http://localhost:4003] to cluster 40ff005f5abc8125
+2015/06/01 20:05:33 etcdserver: added member 136b13cbfb2c4e73 [http://localhost:4004] to cluster 40ff005f5abc8125
+2015/06/01 20:05:33 rafthttp: starting client stream to 136b13cbfb2c4e73 at term 18
+2015/06/01 20:05:33 etcdserver: added member 5d814446642db07a [http://localhost:4001] to cluster 40ff005f5abc8125
+2015/06/01 20:05:33 etcdserver: added member a0b8c728970b1951 [http://localhost:4002] to cluster 40ff005f5abc8125
+2015/06/01 20:05:33 etcdserver: added local member 44a37f7441568b8b [http://localhost:4003] to cluster 40ff005f5abc8125
+2015/06/01 20:05:33 etcdserver: added member 136b13cbfb2c4e73 [http://localhost:4004] to cluster 40ff005f5abc8125
+2015/06/01 20:05:33 etcdserver: published {Name:etcd-3 ClientURLs:[http://localhost:5003]} to cluster 40ff005f5abc8125
+2015/06/01 20:05:33 etcdserver: published {Name:etcd-1 ClientURLs:[http://localhost:5001]} to cluster 40ff005f5abc8125
+trying to start 1
+configuring 1
+etcdserver: peerURL exists                                                                                                                                                                                                         [1682/3791]
+
+invoking
+bin/etcd --data-dir="d1"
+        --name="etcd-1"
+        --initial-cluster-state="existing"
+        --listen-peer-urls="http://localhost:4001"
+        --initial-advertise-peer-urls="http://localhost:4001"
+        --listen-client-urls="http://localhost:5001"
+        --advertise-client-urls="http://localhost:5001"
+        --initial-cluster="etcd-2=http://localhost:4002,etcd-3=http://localhost:4003,etcd-4=http://localhost:4004"
+2015/06/01 20:05:35 etcd: listen tcp 127.0.0.1:4001: bind: address already in use
+
+
+
+trying to kill 3
+trying to start 3
+configuring 3
+etcdserver: peerURL exists
+
+invoking
+bin/etcd --data-dir="d3"
+        --name="etcd-3"
+        --initial-cluster-state="existing"
+        --listen-peer-urls="http://localhost:4003"
+        --initial-advertise-peer-urls="http://localhost:4003"
+        --listen-client-urls="http://localhost:5003"
+        --advertise-client-urls="http://localhost:5003"
+        --initial-cluster="etcd-1=http://localhost:4001,etcd-2=http://localhost:4002,etcd-3=http://localhost:4003,etcd-4=http://localhost:4004"
+2015/06/01 20:05:44 etcd: listen tcp 127.0.0.1:4003: bind: address already in use
+trying to kill 1
+trying to start 1
+configuring 1
+dial tcp 127.0.0.1:5002: connection refused
+
+invoking
+bin/etcd --data-dir="d1"
+        --name="etcd-1"
+        --initial-cluster-state="existing"
+        --listen-peer-urls="http://localhost:4001"
+        --initial-advertise-peer-urls="http://localhost:4001"
+        --listen-client-urls="http://localhost:5001"
+        --advertise-client-urls="http://localhost:5001"
+        --initial-cluster="etcd-1=http://localhost:4001,etcd-2=http://localhost:4002,etcd-3=http://localhost:4003,etcd-4=http://localhost:4004"
+2015/06/01 20:05:50 etcd: listen tcp 127.0.0.1:4001: bind: address already in use
+2015/06/01 20:05:56 etcdserver: failed to purge snap file open d1/member/snap: no such file or directory
+2015/06/01 20:05:56 sender: error posting to 5d814446642db07a: dial tcp 127.0.0.1:4001: connection refused
+2015/06/01 20:05:56 sender: the connection with 5d814446642db07a became inactive
+2015/06/01 20:05:58 rafthttp: encountered error writing to server log stream: write tcp 127.0.0.1:59546: broken pipe
+2015/06/01 20:05:58 rafthttp: server streaming to 5d814446642db07a at term 18 has been stopped
+2015/06/01 20:05:58 stream: error sending message: stopped
+2015/06/01 20:05:58 stream: stopping the stream server...
+trying to kill 3
+2015/06/01 20:06:02 etcdserver: failed to purge snap file open d3/member/snap: no such file or directory
+2015/06/01 20:06:02 sender: error posting to 44a37f7441568b8b: dial tcp 127.0.0.1:4003: connection refused
+2015/06/01 20:06:02 sender: the connection with 44a37f7441568b8b became inactive
+trying to start 3
+configuring 3
+dial tcp 127.0.0.1:5001: connection refused
+
+invoking
+bin/etcd --data-dir="d3"
+        --name="etcd-3"
+        --initial-cluster-state="existing"
+        --listen-peer-urls="http://localhost:4003"
+        --initial-advertise-peer-urls="http://localhost:4003"
+        --listen-client-urls="http://localhost:5003"
+        --advertise-client-urls="http://localhost:5003"
+        --initial-cluster="etcd-1=http://localhost:4001,etcd-2=http://localhost:4002,etcd-3=http://localhost:4003,etcd-4=http://localhost:4004"
+2015/06/01 20:06:02 etcd: listening for peers on http://localhost:4003
+2015/06/01 20:06:02 etcd: listening for client requests on http://localhost:5003
+2015/06/01 20:06:02 etcdserver: datadir is valid for the 2.0.1 format
+2015/06/01 20:06:02 etcdserver: could not get cluster response from http://localhost:4001: Get http://localhost:4001/members: dial tcp 127.0.0.1:4001: connection refused
+2015/06/01 20:06:02 etcdserver: could not get cluster response from http://localhost:4002: Get http://localhost:4002/members: dial tcp 127.0.0.1:4002: connection refused
+2015/06/01 20:06:02 etcdserver: name = etcd-3
+2015/06/01 20:06:02 etcdserver: data dir = d3
+2015/06/01 20:06:02 etcdserver: member dir = d3/member
+2015/06/01 20:06:02 etcdserver: heartbeat = 100ms
+2015/06/01 20:06:02 etcdserver: election = 1000ms
+2015/06/01 20:06:02 etcdserver: snapshot count = 10000
+2015/06/01 20:06:02 etcdserver: advertise client URLs = http://localhost:5003
+2015/06/01 20:06:02 etcdserver: start member 44a37f7441568b8b in cluster 40ff005f5abc8125
+2015/06/01 20:06:02 raft: 44a37f7441568b8b became follower at term 0
+2015/06/01 20:06:02 raft: newRaft 44a37f7441568b8b [peers: [], term: 0, commit: 0, applied: 0, lastindex: 0, lastterm: 0]
+2015/06/01 20:06:02 raft: 44a37f7441568b8b became follower at term 1
+2015/06/01 20:06:02 raft: 44a37f7441568b8b [term: 1] received a MsgHeartbeat message with higher term from 136b13cbfb2c4e73 [term: 18]
+2015/06/01 20:06:02 raft: 44a37f7441568b8b became follower at term 18
+2015/06/01 20:06:02 sender: the connection with 44a37f7441568b8b became active
+2015/06/01 20:06:02 tocommit(98) is out of range [lastIndex(0)]
+panic: tocommit(98) is out of range [lastIndex(0)]
+
+goroutine 15 [running]:
+log.Panicf(0x4e2ad0, 0x2c, 0x2087f4510, 0x2, 0x2)
+        /usr/local/go/src/log/log.go:314 +0xd0
+github.com/coreos/etcd/raft.(*raftLog).commitTo(0x208746b90, 0x62)
+        /Users/unihorn/gopath/src/github.com/coreos/etcd/scripts/release/etcd/gopath/src/github.com/coreos/etcd/raft/log.go:177 +0x179
+github.com/coreos/etcd/raft.(*raft).handleHeartbeat(0x208748420, 0x8, 0x44a37f7441568b8b, 0x136b13cbfb2c4e73, 0x12, 0x0, 0x0, 0x0, 0x0, 0x0, ...)
+        /Users/unihorn/gopath/src/github.com/coreos/etcd/scripts/release/etcd/gopath/src/github.com/coreos/etcd/raft/raft.go:593 +0x47
+github.com/coreos/etcd/raft.stepFollower(0x208748420, 0x8, 0x44a37f7441568b8b, 0x136b13cbfb2c4e73, 0x12, 0x0, 0x0, 0x0, 0x0, 0x0, ...)
+        /Users/unihorn/gopath/src/github.com/coreos/etcd/scripts/release/etcd/gopath/src/github.com/coreos/etcd/raft/raft.go:563 +0xfdd
+github.com/coreos/etcd/raft.(*raft).Step(0x208748420, 0x8, 0x44a37f7441568b8b, 0x136b13cbfb2c4e73, 0x12, 0x0, 0x0, 0x0, 0x0, 0x0, ...)
+        /Users/unihorn/gopath/src/github.com/coreos/etcd/scripts/release/etcd/gopath/src/github.com/coreos/etcd/raft/raft.go:461 +0x23f
+github.com/coreos/etcd/raft.(*node).run(0x208746b40, 0x208748420)
+        /Users/unihorn/gopath/src/github.com/coreos/etcd/scripts/release/etcd/gopath/src/github.com/coreos/etcd/raft/node.go:275 +0x689
+created by github.com/coreos/etcd/raft.StartNode
+        /Users/unihorn/gopath/src/github.com/coreos/etcd/scripts/release/etcd/gopath/src/github.com/coreos/etcd/raft/node.go:168 +0x50a
+
+goroutine 1 [chan receive]:
+github.com/coreos/etcd/etcdmain.Main()
+        /Users/unihorn/gopath/src/github.com/coreos/etcd/scripts/release/etcd/gopath/src/github.com/coreos/etcd/etcdmain/etcd.go:108 +0xb81
+main.main()
+        /Users/unihorn/gopath/src/github.com/coreos/etcd/scripts/release/etcd/gopath/src/github.com/coreos/etcd/main.go:29 +0x1b
+goroutine 5 [syscall]:
+os/signal.loop()
+        /usr/local/go/src/os/signal/signal_unix.go:21 +0x1f
+created by os/signal.init·1
+        /usr/local/go/src/os/signal/signal_unix.go:27 +0x35
+
+goroutine 17 [chan receive]:
+github.com/coreos/etcd/rafthttp.(*peer).handle(0x2087484d0)
+        /Users/unihorn/gopath/src/github.com/coreos/etcd/scripts/release/etcd/gopath/src/github.com/coreos/etcd/rafthttp/peer.go:187 +0x99
+created by github.com/coreos/etcd/rafthttp.NewPeer
+        /Users/unihorn/gopath/src/github.com/coreos/etcd/scripts/release/etcd/gopath/src/github.com/coreos/etcd/rafthttp/peer.go:94 +0x2cc
+
+goroutine 16 [chan receive]:
+github.com/coreos/etcd/rafthttp.(*peer).handle(0x2087484d0)
+        /Users/unihorn/gopath/src/github.com/coreos/etcd/scripts/release/etcd/gopath/src/github.com/coreos/etcd/rafthttp/peer.go:187 +0x99
+created by github.com/coreos/etcd/rafthttp.NewPeer
+        /Users/unihorn/gopath/src/github.com/coreos/etcd/scripts/release/etcd/gopath/src/github.com/coreos/etcd/rafthttp/peer.go:94 +0x2cc
+
+goroutine 18 [chan receive]:
+github.com/coreos/etcd/rafthttp.(*peer).handle(0x2087484d0)
+        /Users/unihorn/gopath/src/github.com/coreos/etcd/scripts/release/etcd/gopath/src/github.com/coreos/etcd/rafthttp/peer.go:187 +0x99
+created by github.com/coreos/etcd/rafthttp.NewPeer
+        /Users/unihorn/gopath/src/github.com/coreos/etcd/scripts/release/etcd/gopath/src/github.com/coreos/etcd/rafthttp/peer.go:94 +0x2cc
+
+goroutine 19 [chan receive]:
+github.com/coreos/etcd/rafthttp.(*peer).handle(0x2087484d0)
+        /Users/unihorn/gopath/src/github.com/coreos/etcd/scripts/release/etcd/gopath/src/github.com/coreos/etcd/rafthttp/peer.go:187 +0x99
+created by github.com/coreos/etcd/rafthttp.NewPeer
+        /Users/unihorn/gopath/src/github.com/coreos/etcd/scripts/release/etcd/gopath/src/github.com/coreos/etcd/rafthttp/peer.go:94 +0x2cc
+
+goroutine 20 [chan receive]:
+github.com/coreos/etcd/rafthttp.(*peer).handle(0x208748630)
+        /Users/unihorn/gopath/src/github.com/coreos/etcd/scripts/release/etcd/gopath/src/github.com/coreos/etcd/rafthttp/peer.go:187 +0x99
+created by github.com/coreos/etcd/rafthttp.NewPeer
+        /Users/unihorn/gopath/src/github.com/coreos/etcd/scripts/release/etcd/gopath/src/github.com/coreos/etcd/rafthttp/peer.go:94 +0x2cc
+
+goroutine 21 [chan receive]:
+github.com/coreos/etcd/rafthttp.(*peer).handle(0x208748630)
+        /Users/unihorn/gopath/src/github.com/coreos/etcd/scripts/release/etcd/gopath/src/github.com/coreos/etcd/rafthttp/peer.go:187 +0x99
+created by github.com/coreos/etcd/rafthttp.NewPeer
+        /Users/unihorn/gopath/src/github.com/coreos/etcd/scripts/release/etcd/gopath/src/github.com/coreos/etcd/rafthttp/peer.go:94 +0x2cc
+
+goroutine 22 [chan receive]:
+github.com/coreos/etcd/rafthttp.(*peer).handle(0x208748630)
+        /Users/unihorn/gopath/src/github.com/coreos/etcd/scripts/release/etcd/gopath/src/github.com/coreos/etcd/rafthttp/peer.go:187 +0x99
+created by github.com/coreos/etcd/rafthttp.NewPeer
+        /Users/unihorn/gopath/src/github.com/coreos/etcd/scripts/release/etcd/gopath/src/github.com/coreos/etcd/rafthttp/peer.go:94 +0x2cc
+
+goroutine 23 [chan receive]:
+github.com/coreos/etcd/rafthttp.(*peer).handle(0x208748630)
+        /Users/unihorn/gopath/src/github.com/coreos/etcd/scripts/release/etcd/gopath/src/github.com/coreos/etcd/rafthttp/peer.go:187 +0x99
+created by github.com/coreos/etcd/rafthttp.NewPeer
+        /Users/unihorn/gopath/src/github.com/coreos/etcd/scripts/release/etcd/gopath/src/github.com/coreos/etcd/rafthttp/peer.go:94 +0x2cc
+
+goroutine 24 [chan receive]:
+github.com/coreos/etcd/rafthttp.(*peer).handle(0x2087486e0)
+github.com/coreos/etcd/rafthttp.(*peer).handle(0x2087486e0)
+        /Users/unihorn/gopath/src/github.com/coreos/etcd/scripts/release/etcd/gopath/src/github.com/coreos/etcd/rafthttp/peer.go:187 +0x99
+created by github.com/coreos/etcd/rafthttp.NewPeer
+       /Users/unihorn/gopath/src/github.com/coreos/etcd/scripts/release/etcd/gopath/src/github.com/coreos/etcd/rafthttp/peer.go:94 +0x2cc
+
+goroutine 25 [chan receive]:
+github.com/coreos/etcd/rafthttp.(*peer).handle(0x2087486e0)
+        /Users/unihorn/gopath/src/github.com/coreos/etcd/scripts/release/etcd/gopath/src/github.com/coreos/etcd/rafthttp/peer.go:187 +0x99
+created by github.com/coreos/etcd/rafthttp.NewPeer
+        /Users/unihorn/gopath/src/github.com/coreos/etcd/scripts/release/etcd/gopath/src/github.com/coreos/etcd/rafthttp/peer.go:94 +0x2cc
+
+goroutine 26 [chan receive]:
+github.com/coreos/etcd/rafthttp.(*peer).handle(0x2087486e0)
+        /Users/unihorn/gopath/src/github.com/coreos/etcd/scripts/release/etcd/gopath/src/github.com/coreos/etcd/rafthttp/peer.go:187 +0x99
+created by github.com/coreos/etcd/rafthttp.NewPeer
+        /Users/unihorn/gopath/src/github.com/coreos/etcd/scripts/release/etcd/gopath/src/github.com/coreos/etcd/rafthttp/peer.go:94 +0x2cc
+
+goroutine 27 [chan receive]:
+github.com/coreos/etcd/rafthttp.(*peer).handle(0x2087486e0)
+        /Users/unihorn/gopath/src/github.com/coreos/etcd/scripts/release/etcd/gopath/src/github.com/coreos/etcd/rafthttp/peer.go:187 +0x99
+created by github.com/coreos/etcd/rafthttp.NewPeer
+        /Users/unihorn/gopath/src/github.com/coreos/etcd/scripts/release/etcd/gopath/src/github.com/coreos/etcd/rafthttp/peer.go:94 +0x2cc
+
+goroutine 28 [chan receive]:
+github.com/coreos/etcd/rafthttp.(*peer).handle(0x208748790)
+        /Users/unihorn/gopath/src/github.com/coreos/etcd/scripts/release/etcd/gopath/src/github.com/coreos/etcd/rafthttp/peer.go:187 +0x99
+created by github.com/coreos/etcd/rafthttp.NewPeer
+        /Users/unihorn/gopath/src/github.com/coreos/etcd/scripts/release/etcd/gopath/src/github.com/coreos/etcd/rafthttp/peer.go:94 +0x2cc
+
+goroutine 29 [chan receive]:
+github.com/coreos/etcd/rafthttp.(*peer).handle(0x208748790)
+        /Users/unihorn/gopath/src/github.com/coreos/etcd/scripts/release/etcd/gopath/src/github.com/coreos/etcd/rafthttp/peer.go:187 +0x99
+created by github.com/coreos/etcd/rafthttp.NewPeer
+        /Users/unihorn/gopath/src/github.com/coreos/etcd/scripts/release/etcd/gopath/src/github.com/coreos/etcd/rafthttp/peer.go:94 +0x2cc
+
+goroutine 30 [chan receive]:
+github.com/coreos/etcd/rafthttp.(*peer).handle(0x208748790)
+        /Users/unihorn/gopath/src/github.com/coreos/etcd/scripts/release/etcd/gopath/src/github.com/coreos/etcd/rafthttp/peer.go:187 +0x99
+created by github.com/coreos/etcd/rafthttp.NewPeer
+        /Users/unihorn/gopath/src/github.com/coreos/etcd/scripts/release/etcd/gopath/src/github.com/coreos/etcd/rafthttp/peer.go:94 +0x2cc
+
+goroutine 31 [chan receive]:
+github.com/coreos/etcd/rafthttp.(*peer).handle(0x208748790)
+        /Users/unihorn/gopath/src/github.com/coreos/etcd/scripts/release/etcd/gopath/src/github.com/coreos/etcd/rafthttp/peer.go:187 +0x99
+created by github.com/coreos/etcd/rafthttp.NewPeer
+        /Users/unihorn/gopath/src/github.com/coreos/etcd/scripts/release/etcd/gopath/src/github.com/coreos/etcd/rafthttp/peer.go:94 +0x2cc
+
+goroutine 32 [chan receive]:
+github.com/coreos/etcd/rafthttp.(*peer).handle(0x208748840)
+        /Users/unihorn/gopath/src/github.com/coreos/etcd/scripts/release/etcd/gopath/src/github.com/coreos/etcd/rafthttp/peer.go:187 +0x99
+created by github.com/coreos/etcd/rafthttp.NewPeer
+        /Users/unihorn/gopath/src/github.com/coreos/etcd/scripts/release/etcd/gopath/src/github.com/coreos/etcd/rafthttp/peer.go:94 +0x2cc
+
+goroutine 33 [chan receive]:
+github.com/coreos/etcd/rafthttp.(*peer).handle(0x208748840)
+        /Users/unihorn/gopath/src/github.com/coreos/etcd/scripts/release/etcd/gopath/src/github.com/coreos/etcd/rafthttp/peer.go:187 +0x99
+created by github.com/coreos/etcd/rafthttp.NewPeer
+        /Users/unihorn/gopath/src/github.com/coreos/etcd/scripts/release/etcd/gopath/src/github.com/coreos/etcd/rafthttp/peer.go:94 +0x2cc
+
+goroutine 34 [chan receive]:
+github.com/coreos/etcd/rafthttp.(*peer).handle(0x208748840)
+        /Users/unihorn/gopath/src/github.com/coreos/etcd/scripts/release/etcd/gopath/src/github.com/coreos/etcd/rafthttp/peer.go:187 +0x99
+created by github.com/coreos/etcd/rafthttp.NewPeer
+        /Users/unihorn/gopath/src/github.com/coreos/etcd/scripts/release/etcd/gopath/src/github.com/coreos/etcd/rafthttp/peer.go:94 +0x2cc
+
+goroutine 35 [chan receive]:
+github.com/coreos/etcd/rafthttp.(*peer).handle(0x208748840)
+        /Users/unihorn/gopath/src/github.com/coreos/etcd/scripts/release/etcd/gopath/src/github.com/coreos/etcd/rafthttp/peer.go:187 +0x99
+created by github.com/coreos/etcd/rafthttp.NewPeer
+        /Users/unihorn/gopath/src/github.com/coreos/etcd/scripts/release/etcd/gopath/src/github.com/coreos/etcd/rafthttp/peer.go:94 +0x2cc
+
+goroutine 36 [chan receive]:
+github.com/coreos/etcd/rafthttp.(*peer).handle(0x2087488f0)
+        /Users/unihorn/gopath/src/github.com/coreos/etcd/scripts/release/etcd/gopath/src/github.com/coreos/etcd/rafthttp/peer.go:187 +0x99
+created by github.com/coreos/etcd/rafthttp.NewPeer
+        /Users/unihorn/gopath/src/github.com/coreos/etcd/scripts/release/etcd/gopath/src/github.com/coreos/etcd/rafthttp/peer.go:94 +0x2cc
+
+goroutine 37 [chan receive]:
+github.com/coreos/etcd/rafthttp.(*peer).handle(0x2087488f0)
+        /Users/unihorn/gopath/src/github.com/coreos/etcd/scripts/release/etcd/gopath/src/github.com/coreos/etcd/rafthttp/peer.go:187 +0x99
+created by github.com/coreos/etcd/rafthttp.NewPeer
+        /Users/unihorn/gopath/src/github.com/coreos/etcd/scripts/release/etcd/gopath/src/github.com/coreos/etcd/rafthttp/peer.go:94 +0x2cc
+
+goroutine 38 [chan receive]:
+github.com/coreos/etcd/rafthttp.(*peer).handle(0x2087488f0)
+        /Users/unihorn/gopath/src/github.com/coreos/etcd/scripts/release/etcd/gopath/src/github.com/coreos/etcd/rafthttp/peer.go:187 +0x99
+created by github.com/coreos/etcd/rafthttp.NewPeer
+        /Users/unihorn/gopath/src/github.com/coreos/etcd/scripts/release/etcd/gopath/src/github.com/coreos/etcd/rafthttp/peer.go:94 +0x2cc
+
+goroutine 39 [chan receive]:
+github.com/coreos/etcd/rafthttp.(*peer).handle(0x2087488f0)
+        /Users/unihorn/gopath/src/github.com/coreos/etcd/scripts/release/etcd/gopath/src/github.com/coreos/etcd/rafthttp/peer.go:187 +0x99
+created by github.com/coreos/etcd/rafthttp.NewPeer
+        /Users/unihorn/gopath/src/github.com/coreos/etcd/scripts/release/etcd/gopath/src/github.com/coreos/etcd/rafthttp/peer.go:94 +0x2cc
+
+goroutine 40 [select]:
+github.com/coreos/etcd/etcdserver.(*EtcdServer).run(0x208784200)
+        /Users/unihorn/gopath/src/github.com/coreos/etcd/scripts/release/etcd/gopath/src/github.com/coreos/etcd/etcdserver/server.go:365 +0x14b0
+created by github.com/coreos/etcd/etcdserver.(*EtcdServer).start
+        /Users/unihorn/gopath/src/github.com/coreos/etcd/scripts/release/etcd/gopath/src/github.com/coreos/etcd/etcdserver/server.go:305 +0x27c
+
+goroutine 41 [select]:
+github.com/coreos/etcd/raft.(*node).step(0x208746b40, 0x2208723310, 0x20876eae0, 0x2, 0x0, 0x0, 0x0, 0x0, 0x0, 0x208746e10, ...)
+        /Users/unihorn/gopath/src/github.com/coreos/etcd/scripts/release/etcd/gopath/src/github.com/coreos/etcd/raft/node.go:383 +0x1ed
+github.com/coreos/etcd/raft.(*node).Propose(0x208746b40, 0x2208723310, 0x20876eae0, 0x208718a20, 0x89, 0x89, 0x0, 0x0)
+        /Users/unihorn/gopath/src/github.com/coreos/etcd/scripts/release/etcd/gopath/src/github.com/coreos/etcd/raft/node.go:355 +0x141
+github.com/coreos/etcd/etcdserver.(*EtcdServer).Do(0x208784200, 0x2208723310, 0x20876eae0, 0x8b4db23ba5630001, 0x453e60, 0x3, 0x2087dc1b0, 0x26, 0x2087da3c0, 0x38, ...)
+        /Users/unihorn/gopath/src/github.com/coreos/etcd/scripts/release/etcd/gopath/src/github.com/coreos/etcd/etcdserver/server.go:498 +0x2ee
+github.com/coreos/etcd/etcdserver.(*EtcdServer).publish(0x208784200, 0x12a05f200)
+        /Users/unihorn/gopath/src/github.com/coreos/etcd/scripts/release/etcd/gopath/src/github.com/coreos/etcd/etcdserver/server.go:661 +0x30b
+created by github.com/coreos/etcd/etcdserver.(*EtcdServer).Start
+        /Users/unihorn/gopath/src/github.com/coreos/etcd/scripts/release/etcd/gopath/src/github.com/coreos/etcd/etcdserver/server.go:287 +0x4f
+
+goroutine 42 [select]:
+github.com/coreos/etcd/etcdserver.(*EtcdServer).purgeFile(0x208784200)
+        /Users/unihorn/gopath/src/github.com/coreos/etcd/scripts/release/etcd/gopath/src/github.com/coreos/etcd/etcdserver/server.go:316 +0x48c
+created by github.com/coreos/etcd/etcdserver.(*EtcdServer).Start
+        /Users/unihorn/gopath/src/github.com/coreos/etcd/scripts/release/etcd/gopath/src/github.com/coreos/etcd/etcdserver/server.go:288 +0x69
+goroutine 43 [IO wait]:
+net.(*pollDesc).Wait(0x20878e4c0, 0x72, 0x0, 0x0)
+        /usr/local/go/src/net/fd_poll_runtime.go:84 +0x47
+net.(*pollDesc).WaitRead(0x20878e4c0, 0x0, 0x0)
+        /usr/local/go/src/net/fd_poll_runtime.go:89 +0x43
+net.(*netFD).accept(0x20878e460, 0x0, 0x2208720bf0, 0x208741968)
+        /usr/local/go/src/net/fd_unix.go:419 +0x40b
+net.(*TCPListener).AcceptTCP(0x208744038, 0x2208723450, 0x0, 0x0)
+        /usr/local/go/src/net/tcpsock_posix.go:234 +0x4e
+net.(*TCPListener).Accept(0x208744038, 0x0, 0x0, 0x0, 0x0)
+        /usr/local/go/src/net/tcpsock_posix.go:244 +0x4c
+github.com/coreos/etcd/pkg/transport.(*rwTimeoutListener).Accept(0x20872d9e0, 0x0, 0x0, 0x0, 0x0)
+        /Users/unihorn/gopath/src/github.com/coreos/etcd/scripts/release/etcd/gopath/src/github.com/coreos/etcd/pkg/transport/timeout_listener.go:44 +0x7a
+net/http.(*Server).Serve(0x20876eea0, 0x22087224c0, 0x20872d9e0, 0x0, 0x0)
+        /usr/local/go/src/net/http/server.go:1728 +0x92
+github.com/coreos/etcd/etcdmain.serveHTTP(0x22087224c0, 0x20872d9e0, 0x2208723200, 0x20874bf80, 0x45d964b800, 0x0, 0x0)
+        /Users/unihorn/gopath/src/github.com/coreos/etcd/scripts/release/etcd/gopath/src/github.com/coreos/etcd/etcdmain/http.go:36 +0x1be
+github.com/coreos/etcd/etcdmain.func·005(0x22087224c0, 0x20872d9e0)
+        /Users/unihorn/gopath/src/github.com/coreos/etcd/scripts/release/etcd/gopath/src/github.com/coreos/etcd/etcdmain/etcd.go:204 +0x5a
+created by github.com/coreos/etcd/etcdmain.startEtcd
+        /Users/unihorn/gopath/src/github.com/coreos/etcd/scripts/release/etcd/gopath/src/github.com/coreos/etcd/etcdmain/etcd.go:205 +0x1850
+
+goroutine 44 [IO wait]:
+net.(*pollDesc).Wait(0x20878e5a0, 0x72, 0x0, 0x0)
+        /usr/local/go/src/net/fd_poll_runtime.go:84 +0x47
+net.(*pollDesc).WaitRead(0x20878e5a0, 0x0, 0x0)
+        /usr/local/go/src/net/fd_poll_runtime.go:89 +0x43
+net.(*netFD).accept(0x20878e540, 0x0, 0x2208720bf0, 0x2087418c0)
+        /usr/local/go/src/net/fd_unix.go:419 +0x40b
+net.(*TCPListener).AcceptTCP(0x208744040, 0x0, 0x0, 0x0)
+        /usr/local/go/src/net/tcpsock_posix.go:234 +0x4e
+net.(*TCPListener).Accept(0x208744040, 0x0, 0x0, 0x0, 0x0)
+        /usr/local/go/src/net/tcpsock_posix.go:244 +0x4c
+github.com/coreos/etcd/pkg/transport.(*keepaliveListener).Accept(0x208741780, 0x0, 0x0, 0x0, 0x0)
+        /Users/unihorn/gopath/src/github.com/coreos/etcd/scripts/release/etcd/gopath/src/github.com/coreos/etcd/pkg/transport/keepalive_listener.go:48 +0x71
+net/http.(*Server).Serve(0x20876ef60, 0x22087224f8, 0x208741780, 0x0, 0x0)
+        /usr/local/go/src/net/http/server.go:1728 +0x92
+github.com/coreos/etcd/etcdmain.serveHTTP(0x22087224f8, 0x208741780, 0x2208723350, 0x2087c4a20, 0x0, 0x0, 0x0)
+        /Users/unihorn/gopath/src/github.com/coreos/etcd/scripts/release/etcd/gopath/src/github.com/coreos/etcd/etcdmain/http.go:36 +0x1be
+github.com/coreos/etcd/etcdmain.func·006(0x22087224f8, 0x208741780)
+        /Users/unihorn/gopath/src/github.com/coreos/etcd/scripts/release/etcd/gopath/src/github.com/coreos/etcd/etcdmain/etcd.go:212 +0x80
+created by github.com/coreos/etcd/etcdmain.startEtcd
+        /Users/unihorn/gopath/src/github.com/coreos/etcd/scripts/release/etcd/gopath/src/github.com/coreos/etcd/etcdmain/etcd.go:213 +0x1992
+
+goroutine 45 [chan receive]:
+github.com/coreos/etcd/pkg/osutil.func·001()
+        /Users/unihorn/gopath/src/github.com/coreos/etcd/scripts/release/etcd/gopath/src/github.com/coreos/etcd/pkg/osutil/interrupt_unix.go:53 +0x68
+created by github.com/coreos/etcd/pkg/osutil.HandleInterrupts
+        /Users/unihorn/gopath/src/github.com/coreos/etcd/scripts/release/etcd/gopath/src/github.com/coreos/etcd/pkg/osutil/interrupt_unix.go:74 +0x1f6
+
+goroutine 46 [select]:
+github.com/coreos/etcd/pkg/fileutil.func·001()
+        /Users/unihorn/gopath/src/github.com/coreos/etcd/scripts/release/etcd/gopath/src/github.com/coreos/etcd/pkg/fileutil/purge.go:69 +0x658
+created by github.com/coreos/etcd/pkg/fileutil.PurgeFile
+        /Users/unihorn/gopath/src/github.com/coreos/etcd/scripts/release/etcd/gopath/src/github.com/coreos/etcd/pkg/fileutil/purge.go:75 +0x231
+
+goroutine 47 [select]:
+github.com/coreos/etcd/pkg/fileutil.func·001()
+        /Users/unihorn/gopath/src/github.com/coreos/etcd/scripts/release/etcd/gopath/src/github.com/coreos/etcd/pkg/fileutil/purge.go:69 +0x658
+created by github.com/coreos/etcd/pkg/fileutil.PurgeFile
+        /Users/unihorn/gopath/src/github.com/coreos/etcd/scripts/release/etcd/gopath/src/github.com/coreos/etcd/pkg/fileutil/purge.go:75 +0x231
+
+goroutine 48 [runnable]:
+net.(*pollDesc).Wait(0x20878fbf0, 0x72, 0x0, 0x0)
+        /usr/local/go/src/net/fd_poll_runtime.go:84 +0x47
+net.(*pollDesc).WaitRead(0x20878fbf0, 0x0, 0x0)
+        /usr/local/go/src/net/fd_poll_runtime.go:89 +0x43
+net.(*netFD).Read(0x20878fb90, 0x2087ec000, 0x1000, 0x1000, 0x0, 0x2208720bf0, 0x208741a18)
+        /usr/local/go/src/net/fd_unix.go:242 +0x40f
+net.(*conn).Read(0x208744128, 0x2087ec000, 0x1000, 0x1000, 0x0, 0x0, 0x0)
+        /usr/local/go/src/net/net.go:121 +0xdc
+github.com/coreos/etcd/pkg/transport.timeoutConn.Read(0x2208722748, 0x208744128, 0x12a05f200, 0x12a05f200, 0x2087ec000, 0x1000, 0x1000, 0x100000000, 0x0, 0x0)
+        /Users/unihorn/gopath/src/github.com/coreos/etcd/scripts/release/etcd/gopath/src/github.com/coreos/etcd/pkg/transport/timeout_conn.go:43 +0x165
+github.com/coreos/etcd/pkg/transport.(*timeoutConn).Read(0x2087c4d00, 0x2087ec000, 0x1000, 0x1000, 0x3, 0x0, 0x0)
+        <autogenerated>:21 +0xd6
+net/http.(*liveSwitchReader).Read(0x208778368, 0x2087ec000, 0x1000, 0x1000, 0xe251, 0x0, 0x0)
+        /usr/local/go/src/net/http/server.go:214 +0xab
+io.(*LimitedReader).Read(0x2087c4d20, 0x2087ec000, 0x1000, 0x1000, 0x40, 0x0, 0x0)
+        /usr/local/go/src/io/io.go:408 +0xce
+bufio.(*Reader).fill(0x20876f080)
+        /usr/local/go/src/bufio/bufio.go:97 +0x1ce
+bufio.(*Reader).ReadSlice(0x20876f080, 0xa, 0x0, 0x0, 0x0, 0x0, 0x0)
+        /usr/local/go/src/bufio/bufio.go:295 +0x257
+bufio.(*Reader).ReadLine(0x20876f080, 0x0, 0x0, 0x0, 0x20878fb00, 0x0, 0x0)
+        /usr/local/go/src/bufio/bufio.go:324 +0x62
+net/textproto.(*Reader).readLineSlice(0x2087dc330, 0x0, 0x0, 0x0, 0x0, 0x0)
+        /usr/local/go/src/net/textproto/reader.go:55 +0x9e
+net/textproto.(*Reader).ReadLine(0x2087dc330, 0x0, 0x0, 0x0, 0x0)
+        /usr/local/go/src/net/textproto/reader.go:36 +0x4f
+net/http.ReadRequest(0x20876f080, 0x20874dba0, 0x0, 0x0)
+        /usr/local/go/src/net/http/request.go:598 +0xcb
+net/http.(*conn).readRequest(0x208778320, 0x0, 0x0, 0x0)
+        /usr/local/go/src/net/http/server.go:586 +0x26f
+net/http.(*conn).serve(0x208778320)
+        /usr/local/go/src/net/http/server.go:1162 +0x69e
+created by net/http.(*Server).Serve
+        /usr/local/go/src/net/http/server.go:1751 +0x35e
+2015/06/01 20:06:03 sender: error posting to 44a37f7441568b8b: dial tcp 127.0.0.1:4003: connection refused
+2015/06/01 20:06:03 sender: the connection with 44a37f7441568b8b became inactive
+2015/06/01 20:06:04 rafthttp: encountered error writing to server log stream: write tcp 127.0.0.1:59547: broken pipe
+2015/06/01 20:06:04 rafthttp: server streaming to 44a37f7441568b8b at term 18 has been stopped
+2015/06/01 20:06:04 stream: error sending message: stopped
+2015/06/01 20:06:04 stream: stopping the stream server...
+^C2015/06/01 20:06:05 received interrupt signal, shutting down...
+etcfuzz.rb:92:in `sleep': Interrupt
+        from etcfuzz.rb:92:in `block in <main>'
+        from etcfuzz.rb:91:in `loop'
+        from etcfuzz.rb:91:in `<main>'
+
